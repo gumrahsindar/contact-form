@@ -1,0 +1,20 @@
+@use './variables' as *;
+
+.heading {
+  font-size: $fs-700;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.text-md-bold {
+  font-size: $fs-500;
+  font-weight: bold;
+}
+
+.text-md {
+  font-size: $fs-500;
+}
+
+.text-sm {
+  font-size: $fs-400;
+}
