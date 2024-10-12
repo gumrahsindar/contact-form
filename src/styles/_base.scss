@@ -31,31 +31,32 @@ svg {
   max-width: 100%;
 }
 
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
 input[type='checkbox'],
 input[type='radio'] {
   width: 20px;
   height: 20px;
   accent-color: $clr-green-600;
 
-  &:focus,
-  &:focus-within,
-  &:hover,
-  &:active {
+  &:focus-visible {
     outline: 1px solid $clr-green-600;
   }
 }
 
 input,
 textarea {
-  border-radius: 8px;
+  border-radius: $spacing-100;
   border: 1px solid $clr-grey-500;
   padding: 12px 24px;
   font-size: $fs-500;
 
-  &:focus,
-  &:focus-within,
-  &:hover,
-  &:active {
+  &:focus-visible {
     outline: none;
     border: 1px solid $clr-green-600;
   }
@@ -69,24 +70,16 @@ textarea {
   }
 }
 
+label:has(input[type='radio']) {
+  font-size: $fs-500;
+}
+
 label:not(input[type='radio'] + label):not(input[type='checkbox'] + label) {
   margin-bottom: $spacing-100;
 }
 
-fieldset label {
-  font-size: $fs-500;
-}
-
 label {
   display: block;
-  font-size: $fs-400;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
 }
 
 input:not([type='checkbox'], [type='radio']),

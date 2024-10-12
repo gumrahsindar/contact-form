@@ -1,5 +1,5 @@
 @use './styles/variables' as *;
-#root {
+main {
   max-width: 1440px;
   margin: 0 auto;
   min-height: 100vh;
@@ -76,14 +76,6 @@
       &:has(input:checked) {
         background-color: $clr-green-200;
       }
-
-      &:focus,
-      &:focus-within,
-      &:hover,
-      &:active {
-        outline: none;
-        border: 1px solid $clr-green-600;
-      }
     }
   }
 
@@ -102,6 +94,7 @@
     border-radius: $spacing-100;
     background-color: $clr-green-600;
     color: $clr-white;
+    font-size: $fs-500;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s;
