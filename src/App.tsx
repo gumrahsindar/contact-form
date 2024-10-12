@@ -28,35 +28,37 @@ function App() {
             </label>
             <input type='email' id='email' />
           </div>
-          <div className='form__line'>
+          <div className='form-line'>
             <fieldset>
               <legend>
                 Query Type <span>*</span>
               </legend>
-              <div>
-                <input type='radio' name='query-type' id='general-enquiry' />
-                <label htmlFor='general-enquiry'>General Enquiry</label>
-              </div>
-              <div>
-                <input type='radio' name='query-type' id='support-request' />
-                <label htmlFor='support-request'>Support Request</label>
+              <div className='form__query-type'>
+                <label htmlFor='general-enquiry' className='query-type-option'>
+                  <input type='radio' name='query-type' id='general-enquiry' />
+                  General Enquiry
+                </label>
+                <label className='query-type-option' htmlFor='support-request'>
+                  <input type='radio' name='query-type' id='support-request' />
+                  Support Request
+                </label>
               </div>
             </fieldset>
           </div>
-          <div className='form__line'>
+          <div className='form-line'>
             <label htmlFor='message'>
               Message <span>*</span>
             </label>
             <textarea id='message'></textarea>
           </div>
-          <div className='form__line'>
-            <input type='checkbox' name='consent' id='consent' />
-            <label htmlFor='consent'>
-              I hereby consent to being contacted by the team * <span>*</span>
+          <div className='form-line'>
+            <label className='form__consent' htmlFor='consent'>
+              <input type='checkbox' name='consent' id='consent' />I hereby
+              consent to being contacted by the team <span>*</span>
             </label>
           </div>
-          <button>Submit</button>
         </div>
+        <button>Submit</button>
       </div>
     </main>
   )

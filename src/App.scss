@@ -1,28 +1,115 @@
 @use './styles/variables' as *;
 #root {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  text-align: center;
-  background-color: $clr-green-200;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media (width <= 64rem) {
-    padding: $spacing-500;
+    padding-inline: $spacing-500;
   }
 
   @media (width <= 40rem) {
-    padding: $spacing-200;
+    padding: $spacing-400 $spacing-200;
   }
 }
 
 .form {
+  width: 736px;
   padding: $spacing-500;
   background-color: $clr-white;
-  border-radius: 1rem;
+  border-radius: $spacing-100;
 
   @media (width <= 40rem) {
     padding: $spacing-200;
+  }
+
+  .form-line {
+    margin-bottom: $spacing-300;
+
+    &:nth-child(5) {
+      margin-block: 40px;
+    }
+  }
+
+  &__container {
+    color: $clr-grey-900;
+  }
+
+  &__header {
+    margin-bottom: $spacing-400;
+  }
+
+  &__name {
+    display: flex;
+    gap: $spacing-200;
+
+    @media (width <= 40rem) {
+      flex-direction: column;
+    }
+
+    & > div {
+      flex: 1;
+    }
+  }
+
+  &__query-type {
+    display: flex;
+    gap: $spacing-200;
+
+    @media (width <= 40rem) {
+      flex-direction: column;
+    }
+
+    .query-type-option {
+      flex: 1;
+      border: 1px solid $clr-grey-500;
+      border-radius: $spacing-100;
+      padding: $spacing-150 $spacing-300;
+      display: flex;
+      align-items: center;
+      gap: $spacing-150;
+      cursor: pointer;
+
+      &:has(input:checked) {
+        background-color: $clr-green-200;
+      }
+
+      &:focus,
+      &:focus-within,
+      &:hover,
+      &:active {
+        outline: none;
+        border: 1px solid $clr-green-600;
+      }
+    }
+  }
+
+  &__consent {
+    display: flex;
+    align-items: center;
+    gap: $spacing-200;
+  }
+
+  button {
+    all: unset;
+    text-align: center;
+    width: 100%;
+    padding-block: $spacing-200;
+    box-sizing: border-box;
+    border-radius: $spacing-100;
+    background-color: $clr-green-600;
+    color: $clr-white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken($color: $clr-green-600, $amount: 5);
+    }
   }
 }

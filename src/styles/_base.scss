@@ -1,3 +1,5 @@
+@use './variables' as *;
+
 @font-face {
   font-family: 'Karla Regular';
   src: url('../assets/fonts/Karla-VariableFont_wght.ttf');
@@ -14,9 +16,9 @@
 }
 
 body {
+  background-color: $clr-green-200;
   font-family: 'Karla Regular', system-ui, sans-serif;
   font-style: normal;
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 i,
@@ -29,11 +31,83 @@ svg {
   max-width: 100%;
 }
 
+input[type='checkbox'],
+input[type='radio'] {
+  width: 20px;
+  height: 20px;
+  accent-color: $clr-green-600;
+
+  &:focus,
+  &:focus-within,
+  &:hover,
+  &:active {
+    outline: 1px solid $clr-green-600;
+  }
+}
+
+input,
+textarea {
+  border-radius: 8px;
+  border: 1px solid $clr-grey-500;
+  padding: 12px 24px;
+  font-size: $fs-500;
+
+  &:focus,
+  &:focus-within,
+  &:hover,
+  &:active {
+    outline: none;
+    border: 1px solid $clr-green-600;
+  }
+}
+
+textarea {
+  height: 132px;
+
+  @media (width <= 40rem) {
+    height: 240px;
+  }
+}
+
+label:not(input[type='radio'] + label):not(input[type='checkbox'] + label) {
+  margin-bottom: $spacing-100;
+}
+
+fieldset label {
+  font-size: $fs-500;
+}
+
+label {
+  display: block;
+  font-size: $fs-400;
+}
+
 input,
 button,
 textarea,
 select {
   font: inherit;
+}
+
+input:not([type='checkbox'], [type='radio']),
+textarea {
+  width: 100%;
+}
+
+textarea {
+  resize: none;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+  margin-bottom: 1rem;
+  font-size: $fs-400;
 }
 
 p,
@@ -44,6 +118,10 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+}
+
+span {
+  color: $clr-green-600;
 }
 
 #root,
