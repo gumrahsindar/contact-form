@@ -33,7 +33,8 @@ function App() {
               <div className='form__name'>
                 <div>
                   <label htmlFor='first-name'>
-                    First Name <span>*</span>
+                    First Name <span aria-hidden>*</span>
+                    <span className='sr-only'>Required</span>
                   </label>
                   <input
                     className={errors.firstName ? 'error-input' : ''}
@@ -45,14 +46,19 @@ function App() {
                     })}
                     type='text'
                     id='first-name'
+                    aria-invalid={errors.firstName ? 'true' : 'false'}
+                    aria-describedby={errors.firstName ? 'fist-name-error' : ''}
                   />
                   {errors.firstName && (
-                    <p className='error'>{errors.firstName.message}</p>
+                    <p role='alert' id='fist-name-error' className='error'>
+                      {errors.firstName.message}
+                    </p>
                   )}
                 </div>
                 <div>
                   <label htmlFor='last-name'>
-                    Last Name <span>*</span>
+                    Last Name <span aria-hidden>*</span>
+                    <span className='sr-only'>Required</span>
                   </label>
                   <input
                     className={errors.lastName ? 'error-input' : ''}
@@ -64,16 +70,21 @@ function App() {
                     })}
                     type='text'
                     id='last-name'
+                    aria-invalid={errors.lastName ? 'true' : 'false'}
+                    aria-describedby={errors.lastName ? 'last-name-error' : ''}
                   />
                   {errors.lastName && (
-                    <p className='error'>{errors.lastName.message}</p>
+                    <p role='alert' id='last-name-error' className='error'>
+                      {errors.lastName.message}
+                    </p>
                   )}
                 </div>
               </div>
             </div>
             <div className='form-line'>
               <label htmlFor='email'>
-                Email <span>*</span>
+                Email <span aria-hidden>*</span>
+                <span className='sr-only'>Required</span>
               </label>
               <input
                 className={errors.email ? 'error-input' : ''}
@@ -89,13 +100,20 @@ function App() {
                 })}
                 type='email'
                 id='email'
+                aria-invalid={errors.email ? 'true' : 'false'}
+                aria-describedby={errors.email ? 'email-error' : ''}
               />
-              {errors.email && <p className='error'>{errors.email.message}</p>}
+              {errors.email && (
+                <p role='alert' id='email-error' className='error'>
+                  {errors.email.message}
+                </p>
+              )}
             </div>
             <div className='form-line'>
               <fieldset>
                 <legend>
-                  Query Type <span>*</span>
+                  Query Type <span aria-hidden>*</span>
+                  <span className='sr-only'>Required</span>
                 </legend>
                 <div className='form__query-type'>
                   <label
@@ -112,6 +130,10 @@ function App() {
                       type='radio'
                       value='general-enquiry'
                       id='general-enquiry'
+                      aria-invalid={errors.queryType ? 'true' : 'false'}
+                      aria-describedby={
+                        errors.queryType ? 'query-type-error' : ''
+                      }
                     />
                     General Enquiry
                   </label>
@@ -129,18 +151,25 @@ function App() {
                       type='radio'
                       value='support-request'
                       id='support-request'
+                      aria-invalid={errors.queryType ? 'true' : 'false'}
+                      aria-describedby={
+                        errors.queryType ? 'query-type-error' : ''
+                      }
                     />
                     Support Request
                   </label>
                 </div>
                 {errors.queryType && (
-                  <p className='error'>{errors.queryType.message}</p>
+                  <p role='alert' id='query-type-error' className='error'>
+                    {errors.queryType.message}
+                  </p>
                 )}
               </fieldset>
             </div>
             <div className='form-line'>
               <label htmlFor='message'>
-                Message <span>*</span>
+                Message <span aria-hidden>*</span>
+                <span className='sr-only'>Required</span>
               </label>
               <textarea
                 className={errors.message ? 'error-input' : ''}
@@ -151,9 +180,13 @@ function App() {
                   },
                 })}
                 id='message'
+                aria-invalid={errors.message ? 'true' : 'false'}
+                aria-describedby={errors.message ? 'message-error' : ''}
               ></textarea>
               {errors.message && (
-                <p className='error'>{errors.message.message}</p>
+                <p role='alert' id='message-error' className='error'>
+                  {errors.message.message}
+                </p>
               )}
             </div>
             <div className='form-line'>
@@ -168,11 +201,16 @@ function App() {
                   type='checkbox'
                   name='consent'
                   id='consent'
+                  aria-invalid={errors.consent ? 'true' : 'false'}
+                  aria-describedby={errors.consent ? 'consent-error' : ''}
                 />
-                I hereby consent to being contacted by the team <span>*</span>
+                I hereby consent to being contacted by the team{' '}
+                <span aria-hidden>*</span>
               </label>
               {errors.consent && (
-                <p className='error'>{errors.consent.message}</p>
+                <p role='alert' id='consent-error' className='error'>
+                  {errors.consent.message}
+                </p>
               )}
             </div>
           </div>
