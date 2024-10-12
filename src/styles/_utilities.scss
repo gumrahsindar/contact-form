@@ -18,3 +18,12 @@
 .text-sm {
   font-size: $fs-400;
 }
+
+.error {
+  margin-top: 8px;
+  color: $clr-error;
+}
+
+.error-input {
+  border-color: $clr-error;
+}
