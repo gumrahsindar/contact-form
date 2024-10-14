@@ -1,0 +1,34 @@
+@use '../styles/variables' as *;
+
+.message__container {
+  position: absolute;
+  left: calc(50vw - 225px);
+  top: 2%;
+  border-radius: $spacing-150;
+  padding: $spacing-300;
+  background-color: $clr-grey-900;
+  animation: slideIn 0.5s ease;
+
+  .message__heading {
+    display: flex;
+    align-items: center;
+    color: $clr-white;
+    gap: $spacing-100;
+    margin-bottom: $spacing-100;
+  }
+
+  p {
+    color: $clr-green-200;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
