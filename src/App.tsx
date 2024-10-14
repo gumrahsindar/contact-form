@@ -1,28 +1,35 @@
 import './App.scss'
-
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-
-type FormData = {
-  firstName: string
-  lastName: string
-  email: string
-  queryType: string
-  message: string
-  consent: boolean
-}
+import type { FormData } from './types'
+import ConfirmMessage from './components/confirm-message'
+import ReactDOM from 'react-dom'
 
 function App() {
+  const [showModal, setShowModal] = useState(false)
+
+  useEffect(() => {
+    if (showModal) {
+      const timer = setTimeout(() => {
+        setShowModal(false)
+      }, 5000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [showModal])
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>()
-  const onSubmit = (data: FormData) => {
-    console.log('data', data)
-    console.log('errors', errors)
+
+  const onSubmit = () => {
+    setShowModal(true)
+    reset()
   }
 
-  console.log('errors', errors)
   return (
     <main>
       <form noValidate onSubmit={handleSubmit(onSubmit)} className='form'>
@@ -47,10 +54,12 @@ function App() {
                     type='text'
                     id='first-name'
                     aria-invalid={errors.firstName ? 'true' : 'false'}
-                    aria-describedby={errors.firstName ? 'fist-name-error' : ''}
+                    aria-describedby={
+                      errors.firstName ? 'first-name-error' : ''
+                    }
                   />
                   {errors.firstName && (
-                    <p role='alert' id='fist-name-error' className='error'>
+                    <p role='alert' id='first-name-error' className='error'>
                       {errors.firstName.message}
                     </p>
                   )}
@@ -204,7 +213,7 @@ function App() {
                   aria-invalid={errors.consent ? 'true' : 'false'}
                   aria-describedby={errors.consent ? 'consent-error' : ''}
                 />
-                I hereby consent to being contacted by the team{' '}
+                I hereby consent to being contacted by the team
                 <span aria-hidden>*</span>
               </label>
               {errors.consent && (
@@ -217,6 +226,7 @@ function App() {
           <button>Submit</button>
         </div>
       </form>
+      {showModal && ReactDOM.createPortal(<ConfirmMessage />, document.body)}
     </main>
   )
 }
