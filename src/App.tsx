@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form'
 import type { FormData } from './types'
 import ConfirmMessage from './components/confirm-message'
 import ReactDOM from 'react-dom'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { schema } from './schema'
 
 function App() {
   const [showModal, setShowModal] = useState(false)
@@ -23,12 +25,16 @@ function App() {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>()
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  })
 
   const onSubmit = () => {
     setShowModal(true)
     reset()
   }
+
+  console.log(errors)
 
   return (
     <main>
@@ -44,25 +50,14 @@ function App() {
                   </label>
                   <input
                     className={errors.firstName ? 'error-input' : ''}
-                    {...register('firstName', {
-                      required: {
-                        value: true,
-                        message: 'This field is required',
-                      },
-                    })}
+                    {...register('firstName')}
                     type='text'
                     id='first-name'
                     autoComplete='given-name'
                     aria-invalid={errors.firstName ? 'true' : 'false'}
                     aria-describedby='first-name-error'
-                    aria-required
                   />
-                  <p
-                    aria-live='assertive'
-                    id='first-name-error'
-                    className='error'
-                    style={{ display: errors.firstName ? 'block' : 'none' }}
-                  >
+                  <p className='error' id='first-name-error'>
                     {errors.firstName?.message}
                   </p>
                 </div>
@@ -72,25 +67,14 @@ function App() {
                   </label>
                   <input
                     className={errors.lastName ? 'error-input' : ''}
-                    {...register('lastName', {
-                      required: {
-                        value: true,
-                        message: 'This field is required',
-                      },
-                    })}
+                    {...register('lastName')}
                     type='text'
                     id='last-name'
                     autoComplete='family-name'
                     aria-invalid={errors.lastName ? 'true' : 'false'}
                     aria-describedby='last-name-error'
-                    aria-required
                   />
-                  <p
-                    aria-live='assertive'
-                    id='last-name-error'
-                    className='error'
-                    style={{ display: errors.lastName ? 'block' : 'none' }}
-                  >
+                  <p className='error' id='last-name-error'>
                     {errors.lastName?.message}
                   </p>
                 </div>
@@ -102,29 +86,15 @@ function App() {
               </label>
               <input
                 className={errors.email ? 'error-input' : ''}
-                {...register('email', {
-                  required: {
-                    value: true,
-                    message: 'This field is required',
-                  },
-                  pattern: {
-                    value: /\S+@\S+\.\S+/,
-                    message: 'Please enter a valid email address',
-                  },
-                })}
+                {...register('email')}
                 type='email'
                 id='email'
                 autoComplete='email'
+                aria-required
                 aria-invalid={errors.email ? 'true' : 'false'}
                 aria-describedby='email-error'
-                aria-required
               />
-              <p
-                aria-live='assertive'
-                id='email-error'
-                className='error'
-                style={{ display: errors.email ? 'block' : 'none' }}
-              >
+              <p className='error' id='email-error'>
                 {errors.email?.message}
               </p>
             </div>
@@ -133,26 +103,19 @@ function App() {
                 <legend>
                   Query Type <span aria-hidden>*</span>
                 </legend>
-                <span className='sr-only' id='query-type-required'>
-                  Please select a query type. This field is required.
-                </span>
                 <div className='form__query-type'>
                   <label
                     htmlFor='general-enquiry'
                     className='query-type-option'
                   >
                     <input
-                      {...register('queryType', {
-                        required: {
-                          value: true,
-                          message: 'Please select a query type',
-                        },
-                      })}
+                      {...register('queryType')}
                       type='radio'
                       value='general-enquiry'
                       id='general-enquiry'
+                      aria-required
                       aria-invalid={errors.queryType ? 'true' : 'false'}
-                      aria-describedby='query-type-error query-type-required'
+                      aria-describedby='query-type-error'
                     />
                     General Enquiry
                   </label>
@@ -161,27 +124,18 @@ function App() {
                     htmlFor='support-request'
                   >
                     <input
-                      {...register('queryType', {
-                        required: {
-                          value: true,
-                          message: 'Please select a query type',
-                        },
-                      })}
+                      {...register('queryType')}
                       type='radio'
                       value='support-request'
                       id='support-request'
+                      aria-required
                       aria-invalid={errors.queryType ? 'true' : 'false'}
-                      aria-describedby='query-type-error query-type-required'
+                      aria-describedby='query-type-error'
                     />
                     Support Request
                   </label>
                 </div>
-                <p
-                  aria-live='assertive'
-                  id='query-type-error'
-                  className='error'
-                  style={{ display: errors.queryType ? 'block' : 'none' }}
-                >
+                <p className='error' id='query-type-error'>
                   {errors.queryType?.message}
                 </p>
               </fieldset>
@@ -192,51 +146,31 @@ function App() {
               </label>
               <textarea
                 className={errors.message ? 'error-input' : ''}
-                {...register('message', {
-                  required: {
-                    value: true,
-                    message: 'This field is required',
-                  },
-                })}
+                {...register('message')}
                 id='message'
+                aria-required
                 aria-invalid={errors.message ? 'true' : 'false'}
                 aria-describedby='message-error'
-                aria-required
-              ></textarea>
-              <p
-                aria-live='assertive'
-                id='message-error'
-                className='error'
-                style={{ display: errors.message ? 'block' : 'none' }}
-              >
+              />
+              <p className='error' id='message-error'>
                 {errors.message?.message}
               </p>
             </div>
             <div className='form-line'>
               <label className='form__consent' htmlFor='consent'>
                 <input
-                  {...register('consent', {
-                    required: {
-                      value: true,
-                      message: 'Please consent to being contacted by the team',
-                    },
-                  })}
+                  {...register('consent')}
                   type='checkbox'
                   name='consent'
                   id='consent'
+                  aria-required
                   aria-invalid={errors.consent ? 'true' : 'false'}
                   aria-describedby='consent-error'
-                  aria-required
                 />
                 I hereby consent to being contacted by the team
                 <span aria-hidden>*</span>
               </label>
-              <p
-                aria-live='assertive'
-                id='consent-error'
-                className='error'
-                style={{ display: errors.consent ? 'block' : 'none' }}
-              >
+              <p className='error' id='consent-error'>
                 {errors.consent?.message}
               </p>
             </div>
