@@ -82,7 +82,14 @@ main {
   &__consent {
     display: flex;
     align-items: center;
-    gap: $spacing-200;
+
+    input {
+      margin-right: $spacing-200;
+    }
+
+    span {
+      margin-left: 4px;
+    }
   }
 
   button {
