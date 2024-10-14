@@ -1,13 +1,19 @@
 @use '../styles/variables' as *;
 
 .message__container {
+  margin-inline: auto;
   position: absolute;
-  left: calc(50vw - 225px);
+  left: calc(50% - 225px);
   top: 2%;
   border-radius: $spacing-150;
   padding: $spacing-300;
   background-color: $clr-grey-900;
   animation: slideIn 0.5s ease;
+
+  @media (width <= 40rem) {
+    inset-inline: 0;
+    width: 88%;
+  }
 
   .message__heading {
     display: flex;
