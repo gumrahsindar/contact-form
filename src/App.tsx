@@ -54,20 +54,17 @@ function App() {
                     id='first-name'
                     autoComplete='given-name'
                     aria-invalid={errors.firstName ? 'true' : 'false'}
-                    aria-describedby={
-                      errors.firstName ? 'first-name-error' : ''
-                    }
+                    aria-describedby='first-name-error'
                     aria-required
                   />
-                  {errors.firstName && (
-                    <p
-                      aria-live='assertive'
-                      id='first-name-error'
-                      className='error'
-                    >
-                      {errors.firstName.message}
-                    </p>
-                  )}
+                  <p
+                    aria-live='assertive'
+                    id='first-name-error'
+                    className='error'
+                    style={{ display: errors.firstName ? 'block' : 'none' }}
+                  >
+                    {errors.firstName?.message}
+                  </p>
                 </div>
                 <div>
                   <label htmlFor='last-name'>
@@ -85,18 +82,17 @@ function App() {
                     id='last-name'
                     autoComplete='family-name'
                     aria-invalid={errors.lastName ? 'true' : 'false'}
-                    aria-describedby={errors.lastName ? 'last-name-error' : ''}
+                    aria-describedby='last-name-error'
                     aria-required
                   />
-                  {errors.lastName && (
-                    <p
-                      aria-live='assertive'
-                      id='last-name-error'
-                      className='error'
-                    >
-                      {errors.lastName.message}
-                    </p>
-                  )}
+                  <p
+                    aria-live='assertive'
+                    id='last-name-error'
+                    className='error'
+                    style={{ display: errors.lastName ? 'block' : 'none' }}
+                  >
+                    {errors.lastName?.message}
+                  </p>
                 </div>
               </div>
             </div>
@@ -120,17 +116,20 @@ function App() {
                 id='email'
                 autoComplete='email'
                 aria-invalid={errors.email ? 'true' : 'false'}
-                aria-describedby={errors.email ? 'email-error' : ''}
+                aria-describedby='email-error'
                 aria-required
               />
-              {errors.email && (
-                <p aria-live='assertive' id='email-error' className='error'>
-                  {errors.email.message}
-                </p>
-              )}
+              <p
+                aria-live='assertive'
+                id='email-error'
+                className='error'
+                style={{ display: errors.email ? 'block' : 'none' }}
+              >
+                {errors.email?.message}
+              </p>
             </div>
             <div className='form-line'>
-              <fieldset aria-required='true'>
+              <fieldset>
                 <legend>
                   Query Type <span aria-hidden>*</span>
                 </legend>
@@ -153,11 +152,7 @@ function App() {
                       value='general-enquiry'
                       id='general-enquiry'
                       aria-invalid={errors.queryType ? 'true' : 'false'}
-                      aria-describedby={
-                        errors.queryType
-                          ? 'query-type-error query-type-required'
-                          : 'query-type-required'
-                      }
+                      aria-describedby='query-type-error query-type-required'
                     />
                     General Enquiry
                   </label>
@@ -176,24 +171,19 @@ function App() {
                       value='support-request'
                       id='support-request'
                       aria-invalid={errors.queryType ? 'true' : 'false'}
-                      aria-describedby={
-                        errors.queryType
-                          ? 'query-type-error query-type-required'
-                          : 'query-type-required'
-                      }
+                      aria-describedby='query-type-error query-type-required'
                     />
                     Support Request
                   </label>
                 </div>
-                {errors.queryType && (
-                  <p
-                    aria-live='assertive'
-                    id='query-type-error'
-                    className='error'
-                  >
-                    {errors.queryType.message}
-                  </p>
-                )}
+                <p
+                  aria-live='assertive'
+                  id='query-type-error'
+                  className='error'
+                  style={{ display: errors.queryType ? 'block' : 'none' }}
+                >
+                  {errors.queryType?.message}
+                </p>
               </fieldset>
             </div>
             <div className='form-line'>
@@ -210,14 +200,17 @@ function App() {
                 })}
                 id='message'
                 aria-invalid={errors.message ? 'true' : 'false'}
-                aria-describedby={errors.message ? 'message-error' : ''}
+                aria-describedby='message-error'
                 aria-required
               ></textarea>
-              {errors.message && (
-                <p aria-live='assertive' id='message-error' className='error'>
-                  {errors.message.message}
-                </p>
-              )}
+              <p
+                aria-live='assertive'
+                id='message-error'
+                className='error'
+                style={{ display: errors.message ? 'block' : 'none' }}
+              >
+                {errors.message?.message}
+              </p>
             </div>
             <div className='form-line'>
               <label className='form__consent' htmlFor='consent'>
@@ -232,17 +225,20 @@ function App() {
                   name='consent'
                   id='consent'
                   aria-invalid={errors.consent ? 'true' : 'false'}
-                  aria-describedby={errors.consent ? 'consent-error' : ''}
+                  aria-describedby='consent-error'
                   aria-required
                 />
                 I hereby consent to being contacted by the team
                 <span aria-hidden>*</span>
               </label>
-              {errors.consent && (
-                <p aria-live='assertive' id='consent-error' className='error'>
-                  {errors.consent.message}
-                </p>
-              )}
+              <p
+                aria-live='assertive'
+                id='consent-error'
+                className='error'
+                style={{ display: errors.consent ? 'block' : 'none' }}
+              >
+                {errors.consent?.message}
+              </p>
             </div>
           </div>
           <button>Submit</button>

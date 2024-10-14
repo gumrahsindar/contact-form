@@ -93,11 +93,10 @@ main {
   }
 
   button {
-    all: unset;
+    border: none;
     text-align: center;
     width: 100%;
     padding-block: $spacing-200;
-    box-sizing: border-box;
     border-radius: $spacing-100;
     background-color: $clr-green-600;
     color: $clr-white;
@@ -105,6 +104,10 @@ main {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s;
+
+    &:focus-visible {
+      outline: 3px solid hsl(169, 82%, 50%);
+    }
 
     &:hover,
     &:focus,
